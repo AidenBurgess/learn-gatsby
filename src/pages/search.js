@@ -5,7 +5,14 @@ import Header from "../components/header"
 
 export default function Search({ location }) {
 
+    if (!location.state) {
+        console.log("entered")
+        location.state = { searchTerm: "Naruto" };
+    }
+
+    console.log(location)
     const [chars, setChars] = useState([]);
+    const maxLengthOfDesc = 500
 
     useEffect(() => {
         axios.get(`https://kitsu.io/api/edge/characters?filter[name]=${location.state.searchTerm}`)
@@ -24,11 +31,14 @@ export default function Search({ location }) {
                     chars.map(char => (
                         <div key={char.id}>
                             <h2>Name: {char.attributes.name}</h2>
-                            <div dangerouslySetInnerHTML={{ __html: char.attributes.description }} />
+                            <div className="truncate" dangerouslySetInnerHTML={{
+                                __html:
+                                    char.attributes.description.length > maxLengthOfDesc ? char.attributes.description.substring(0, maxLengthOfDesc - 3) + "..." : char.attributes.description.substring(0, maxLengthOfDesc)
+                            }} />
+
                             {
                                 char.attributes.image &&
                                 <img src={char.attributes.image.original} alt="Naruto" />
-
                             }
                         </div>
                     ))
