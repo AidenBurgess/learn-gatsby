@@ -5,9 +5,9 @@ import "../styles.css"
 export default function Header() {
   return (
     <header>
-      <p>Aiden Burgess</p>
-      <div>
-        <Link to="/=">Home</Link>
+      <p className="name">Aiden Burgess</p>
+      <div className="links">
+        <Link to="/">Home</Link>
         <Link to="/projects">Projects</Link>
         <Link to="/education">Education</Link>
         <Link to="/experience">Experience</Link>
