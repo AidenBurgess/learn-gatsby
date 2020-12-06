@@ -11,9 +11,36 @@ const path = require("path")
 exports.createPages = async ({ actions, graphql }) => {
   const { createPage } = actions
   // get the blog posts using graphQL
-  
+  const result = await graphql(`
+  query GetAllBlogPosts {
+    allMarkdownRemark(sort: {fields: frontmatter___date, order: DESC}) {
+      nodes {
+        id
+        frontmatter {
+          author
+          date
+          path
+          title
+        }
+        excerpt
+        timeToRead
+      }
+    }
+  }
+  `)
   // get the blog post template
+  const component = path.resolve("src/templates/post.js")
 
   // use the createPage() method to create pages.
+
+  result.data.allMarkdownRemark.nodes.forEach(post => (
+    createPage({
+      path: post.frontmatter.path,
+      component: component,
+      context:{
+        id: post.id
+      }
+    })
+  ))
 
 }

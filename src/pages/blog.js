@@ -4,9 +4,7 @@ import { graphql, Link } from 'gatsby'
 import Header from "../components/header"
 
 export default function Blog(result) {
-
     const posts = result.data.allMarkdownRemark.nodes
-
 
     return(
         <div>
@@ -31,7 +29,7 @@ export default function Blog(result) {
 
 export const query = graphql`
 query GetAllBlogPosts {
-    allMarkdownRemark {
+    allMarkdownRemark(sort: {fields: frontmatter___date, order: DESC}) {
       nodes {
         id
         frontmatter {
@@ -44,5 +42,5 @@ query GetAllBlogPosts {
         timeToRead
       }
     }
-  }
+  }  
   `
