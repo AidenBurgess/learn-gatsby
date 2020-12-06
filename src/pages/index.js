@@ -1,11 +1,34 @@
-import React from "react"
+import React, { useState } from "react"
 import Header from "../components/header"
+import SearchBar from "material-ui-search-bar";
+
+
 import "../styles.css"
+import { navigate } from "gatsby";
+
 
 export default function Home() {
+
+  const [searchTerm, setSearchTerm] = useState(0);
+
+  function search(searchTerm) {
+    console.log(searchTerm)
+    navigate(
+      "/search",
+      {
+        state: { searchTerm }
+      }
+    )
+  }
+
   return (
     <div>
-      <Header/>
+      <Header />
+      <SearchBar
+        value={searchTerm}
+        onChange={(newValue) => setSearchTerm(newValue)}
+        onRequestSearch={() => search(searchTerm)}
+      />
 
       <div className="container">
         <h1>About Me</h1>
@@ -16,3 +39,4 @@ export default function Home() {
     </div>
   )
 }
+
