@@ -6,9 +6,9 @@ import Header from "../components/header"
 export default function Blog(result) {
     const posts = result.data.allMarkdownRemark.nodes
 
-    return(
+    return (
         <div>
-            <Header/>
+            <Header />
             <div className="container">
                 {
                     posts.map(post => (

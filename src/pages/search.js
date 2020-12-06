@@ -1,7 +1,10 @@
 import React, { useState, useEffect } from "react"
 import axios from 'axios';
+import { CircularProgress } from "@material-ui/core"
 
 import Header from "../components/header"
+import "../styles.css"
+
 
 export default function Search({ location }) {
 
@@ -27,6 +30,7 @@ export default function Search({ location }) {
             <Header />
             <div className="container">
                 <h1>You searched for: {location.state.searchTerm}</h1>
+                <div className="center-within">{(chars.length === 0) && <CircularProgress size={100} />}</div>
                 {
                     chars.map(char => (
                         <div key={char.id}>

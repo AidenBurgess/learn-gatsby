@@ -51,3 +51,8 @@ a:hover {
 .container > p {
   font-size: 18px;
 }
+
+.center-within {
+  display: flex;
+  justify-content: center;
+}
