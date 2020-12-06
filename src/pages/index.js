@@ -9,7 +9,7 @@ import { navigate } from "gatsby";
 
 export default function Home() {
 
-  const [searchTerm, setSearchTerm] = useState(0);
+  const [searchTerm, setSearchTerm] = useState("");
 
   function search(searchTerm) {
     console.log(searchTerm)
@@ -24,10 +24,12 @@ export default function Home() {
   return (
     <div>
       <Header />
+      <h1>Search Anime Characters!</h1>
       <SearchBar
         value={searchTerm}
         onChange={(newValue) => setSearchTerm(newValue)}
         onRequestSearch={() => search(searchTerm)}
+        placeholder="e.g. Naruto Uzumaki"
       />
 
       <div className="container">
