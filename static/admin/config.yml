@@ -2,6 +2,7 @@ backend:
   name: github
   repo: AidenBurgess/learn-gatsby
   branch: main
+  base_url: https://laughing-dijkstra-501d28.netlify.app # Path to ext auth provider
 
 media_folder: static/assets
 public_folder: /assets
